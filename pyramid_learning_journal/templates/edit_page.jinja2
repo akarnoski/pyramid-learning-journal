@@ -1,0 +1,14 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+<article>
+    <form>
+            <input type="text" name="title" onfocus="this.value=''" value="{{post.title}}"><br>
+            <textarea name="message" value="{{post.body}}" rows="15" cols="100">
+            </textarea>
+          </form>
+
+</article>
+
+{% endblock %}
+

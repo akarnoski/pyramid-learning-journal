@@ -1,5 +1,5 @@
 main {
-  background: #f2f2f2;
+  background:  #f5f0ef;
   width: 80%;
   margin: auto;
   font-family: 'Old Standard TT', serif;
@@ -7,7 +7,7 @@ main {
 }
 
 header {
-  background: #262626;
+  background: #141414;
   height: 220px;
   color: white;
   width: 80%;
@@ -39,7 +39,7 @@ h1 {
 
 header h2 {
   font-size: 1.5em;
-  color: #ff8566;
+  color: #b08b82;
 }
 
 header > h1, h2 {
@@ -50,8 +50,9 @@ header > h1, h2 {
 article {
   width: 80%;
   margin: auto;
+  margin-bottom: 20px;
   padding: 15px;
-  border-bottom: solid 2px #262626;
+  border-bottom: solid 2px #141414;
   content: " ";
   display: table;
   clear: both;
@@ -82,18 +83,18 @@ p {
 }
 
 .left:hover {
-  color: #ff8566;
+  color: #a2c3aa;
 }
 
 .right {
   float: right;
-  background: #ff5c33;
+  background: #a2c3aa;
   border-radius: 5px;
 }
 
 .button {
-  background: #ff5c33;
-  border: 2px solid #ff5c33;
+  background: #a2c3aa;
+  border: 2px solid #a2c3aa;
   border-radius: 5px;
   padding: 5px 10px;
   display: inline-block;
@@ -107,12 +108,15 @@ p {
 }
 
 .button:hover, .right:hover {
-  background: #d94a26;
+  background: #83af8f;
 }
 
 .post-title {
   font-size: 1.8em;
   font-family: 'Oswald', sans-serif;
+  background: #90221d;
+  color: white;
+  padding: 8px;
 }
 
 .post-date {
