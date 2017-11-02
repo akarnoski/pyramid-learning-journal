@@ -1,27 +1,43 @@
-from pyramid.response import Response
-import os
+from pyramid.view import view_config
+from pyramid_learning_journal.data.journal_entries import JOURNAL_ENTRIES
+import pyramid.httpexceptions
 
 
-HERE = os.path.abspath(__file__)
-DATA = os.path.join(os.path.dirname(os.path.dirname(HERE)), 'data')
-TEMPLATES = os.path.join(os.path.dirname(os.path.dirname(HERE)), 'templates')
-
-
+@view_config(route_name='home', renderer='../templates/index.jinja2')
 def list_view(request):
-    with open(os.path.join(TEMPLATES, 'index.html')) as file:
-        return Response(file.read())
+    return {
+        "entry": JOURNAL_ENTRIES
+    }
 
 
+@view_config(route_name='detail_page', renderer='../templates/detail.jinja2')
 def detail_view(request):
-    with open(os.path.join(DATA, 'oct30.html')) as file:
-        return Response(file.read())
+    post_id = int(request.matchdict['id'])
+    if post_id < 0 or post_id > len(JOURNAL_ENTRIES) - 1:
+        raise HTTPNotFound
+    post = list(filter(
+        lambda post: post['id'] == post_id,
+        JOURNAL_ENTRIES)
+    )[0]
+    return {
+        'post': post
+    }
 
 
+@view_config(route_name='create_article_page', renderer='../templates/form_page.jinja2')
 def create_view(request):
-    with open(os.path.join(TEMPLATES, 'form_page.html')) as file:
-        return Response(file.read())
+    return {}
 
 
+@view_config(route_name='update_article_page', renderer='../templates/edit_page.jinja2')
 def update_view(request):
-    with open(os.path.join(TEMPLATES, 'edit_page.html')) as file:
-        return Response(file.read())
+    post_id = int(request.matchdict['id'])
+    if post_id < 0 or post_id > len(JOURNAL_ENTRIES) - 1:
+        raise HTTPNotFound
+    post = list(filter(
+        lambda post: post['id'] == post_id,
+        JOURNAL_ENTRIES)
+    )[0]
+    return {
+        'post': post
+    }
