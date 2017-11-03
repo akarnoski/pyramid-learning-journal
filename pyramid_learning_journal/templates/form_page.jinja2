@@ -1,14 +1,16 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-    <article>
-          <h3 class="entry-title">Create New Entry</h3>
-          <form>
-            <input type="text" name="title" onfocus="this.value=''" value="Title"><br>
-            <textarea name="message" rows="15" cols="100">
-            </textarea>
-          </form>
-          <a href="#" class="button right">Save</a>
-         </article>
+
+<article>
+<h3 class="entry-title">Create New Entry</h3>
+<form method="POST">
+    <label for="title">Title</label>
+    <input type="text" name="title"/>
+    <label for="date">Date</label>
+    <input type="text" name="date"/>
+    <textarea name="body" rows="15" cols="100"></textarea>
+    <input type="submit" value="Create" />
+</form>
 
 {% endblock %}  

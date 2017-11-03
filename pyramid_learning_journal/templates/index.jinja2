@@ -1,13 +1,15 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-    {% for post in entries%}
-  <article>
-  <h3 class="post-title">{{post.title}}</h3>
-  <span class="post-date">{{post.date}}</span>
-  <a class="button right" href="{{ request.route_url('detail_page', id=post.id) }}">Read</a>
-  </article>
 
-{% endfor %}
+    {% for post in entries|reverse %}
 
+      <article>
+      <h3 class="post-title">{{post.title}}</h3>
+      <span class="post-date">{{post.date}}</span>
+      <a class="button right" href="{{ request.route_url('detail_page', id=post.id) }}">Read</a>
+      </article>
+
+    {% endfor %}
+    
 {% endblock %}

@@ -49,7 +49,6 @@ def main(argv=sys.argv):
                 title=item["title"],
                 date=item["date"],
                 body=item["body"],
-                id=item["id"],
             )
             many_models.append(new_entry)
         dbsession.add_all(many_models)

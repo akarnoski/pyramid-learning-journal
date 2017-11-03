@@ -34,5 +34,32 @@ JOURNAL_ENTRIES = [
        And I'm not just saying Heroku didn't work, I mean it destroyed \
        itself and everything around it. Not cool"
     },
-    {'id': 3, 'title': 'Title 3', 'date': 'date', 'body': 'HALP'}
+    {
+      'id': 3,
+      'title': 'Lucky Number 13',
+      'date': '01 November, 2017',
+      'body': "Today, day 13, I learned about using SQLAlchemy to store \
+      our journal entries in a database. It took a lot of work to get all \
+      the pieces working together, but once they finally were it was easier \
+      to see the big picture. The hardest thing I find about databases, \
+      especially when it comes to using SQlAlchemy, is not being able \
+      to check each individual step. You either build everything right \
+      and it works, or you miss something and the data gets lost along \
+      the way and you have to go back through each step and find where \
+      it's broken. On top of our learning journal we also did a primary \
+      queue and made more planning for our project. It's hard to switch \
+      mindsets from assignment to assignment and not get stuck pondering \
+      what you need to work on other than the current task at hand. \
+      So I'd also say I'm learning how to find a balance between \
+      cramming as much information into my brain as possible and still \
+      being a semi-functional human being."
+      }
+]
+
+JOURNAL_ENTRIES = [
+  {
+    "id": 1,
+    "title": "First Day of School"
+    "date": "16 October",
+  }
 ]

@@ -1,0 +1,21 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+<article>
+    <h3 class="post-title">{{title}}</h3>
+    <span class="post-date">{{date}}</span>
+    <p>{{body}}</p>
+    <div class="delete_form">
+    <form method="POST">
+        <p>Password required to delete this entry</p>
+        <input type="password" name="password"/>
+        <input type="submit" value="delete" class="button delete" />
+        <a class="button" href="{{ request.route_url('detail_page', id=id) }}">Cancel</a>
+    </form>
+</div>
+{#     <a class="button left" href="{{ request.route_url('delete_entry', id=id) }}">Delete</a>
+    <a class="button right" href="{{ request.route_url('detail_page', id=id) }}">Cancel</a> #}
+</article>
+    
+{% endblock %}
