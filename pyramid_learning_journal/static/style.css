@@ -3,16 +3,17 @@ html {
 }
 
 main {
-  background: #0d0d0d;
+  background: #1a1a1a;
   width: 80%;
   margin: auto;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Gudea', sans-serif;
   height: 100vh;
+  color: white;
 }
 
 header {
-  background: #0d0d0d;
-  height: 220px;
+  background: #1a1a1a;
+  height: 250px;
   color: white;
   width: 80%;
   margin: auto;
@@ -32,18 +33,18 @@ nav a {
   font-size: 18px;
   color: white;
   padding: 10px;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Gudea', sans-serif;
 }
 
 h1 {
   text-transform: uppercase;
-  font-size: 3em;
+  font-size: 3.3em;
   margin-top: 5%;
 }
 
 header h2 {
   font-size: 1.5em;
-  color: #984b43;
+  color: #10bcb3;
 }
 
 header > h1, h2 {
@@ -56,7 +57,7 @@ article {
   margin: auto;
   margin-bottom: 20px;
   padding: 15px;
-  border-bottom: solid 2px 28393e;
+  border-bottom: solid 2px #333333;
   content: " ";
   display: table;
   clear: both;
@@ -71,7 +72,7 @@ input[type=text], select, textarea{
   box-sizing: border-box;
   resize: vertical;
   font-size: 16px;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Gudea', sans-serif;
 }
 
 input[type=password] {
@@ -83,7 +84,7 @@ input[type=password] {
   box-sizing: border-box;
   resize: vertical;
   font-size: 16px;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Gudea', sans-serif;
 }
 
 .delete_form {
@@ -91,11 +92,12 @@ input[type=password] {
 }
 
 p {
-  line-height: 18px;
-  font-size: 16px;
+  line-height: 24px;
+  font-size: 18px;
   width: 90%;
   margin: auto;
   text-align: justify;
+  font-family: 'Gudea', sans-serif;
 }
 
 .left {
@@ -103,18 +105,18 @@ p {
 }
 
 .left:hover {
-  color: #b08b82;
+  color: #10bcb3;
 }
 
 .right {
   float: right;
-  background: #28393e;
+  background: #fc4445;
   border-radius: 5px;
 }
 
 .button {
-  background: #eac67a;
-  border: 2px solid #eac67a;
+  background: #fc4445;
+  border: 2px solid #fc4445;
   border-radius: 5px;
   padding: 5px 10px;
   display: inline-block;
@@ -124,7 +126,7 @@ p {
   color: white;
   font-size: 12px;
   padding: 10px;
-  font-family: 'Old Standard TT', serif;
+  font-family: 'Gudea', sans-serif;
 }
 
 .delete {
@@ -133,14 +135,12 @@ p {
 }
 
 .button:hover, .right:hover {
-  background: #b08b82;
+  background: #e83030;
 }
 
 .post-title {
   font-size: 1.8em;
   font-family: 'Oswald', sans-serif;
-  background: #28393e;
-  color: white;
   padding: 8px;
 }
 
