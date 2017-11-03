@@ -1,3 +1,4 @@
+"""Provide paths for configuration to modules and scripts."""
 from pyramid.config import Configurator
 
 

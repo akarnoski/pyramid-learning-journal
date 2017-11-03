@@ -48,6 +48,7 @@ def main(argv=sys.argv):
             new_entry = Entry(
                 title=item["title"],
                 date=item["date"],
+                tags=item["tags"],
                 body=item["body"],
             )
             many_models.append(new_entry)

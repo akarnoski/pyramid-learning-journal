@@ -66,19 +66,28 @@ article {
 input[type=text], select, textarea{
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 0px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
   resize: vertical;
   font-size: 16px;
   font-family: 'Gudea', sans-serif;
+}
+
+.rightcon {
+  float: right;
+}
+
+.small_container {
+  width: 49%;
+  display: inline-block;
 }
 
 input[type=password] {
   width: 60%;
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 0px 10px 45px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
@@ -87,25 +96,29 @@ input[type=password] {
   font-family: 'Gudea', sans-serif;
 }
 
-.delete_form {
-  background: red;
+label {
+  margin-top: 20px;
 }
 
 p {
   line-height: 24px;
-  font-size: 18px;
+  font-size: 16px;
   width: 90%;
   margin: auto;
   text-align: justify;
   font-family: 'Gudea', sans-serif;
 }
 
-.left {
+.home {
   float: left;
 }
 
-.left:hover {
-  color: #10bcb3;
+.home:hover {
+  color: #a64dff;
+}
+
+.left {
+  float: left;
 }
 
 .right {
@@ -119,19 +132,28 @@ p {
   border: 2px solid #fc4445;
   border-radius: 5px;
   padding: 5px 10px;
+  width: 70px;
   display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
+  text-align: center;
   margin: 10px;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   padding: 10px;
   font-family: 'Gudea', sans-serif;
 }
 
-.delete {
-  background: #984b43;
-  padding: 4px 10px;
+.delete_form {
+  background: #970202;
+  padding: 15px 45px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.delete_message {
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .button:hover, .right:hover {
@@ -153,4 +175,20 @@ p {
 
 .entry-title {
   font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.tag_link {
+  text-decoration: none;
+  margin: 0px 3px;
+  font-size: 12px;
+  color: #a64dff;
+  font-style: italic;
+  font-family: 'Gudea', sans-serif; 
+}
+
+.example {
+  font-size: 12px;
+  font-style: italic;
+  color: #a6a6a6;
 }

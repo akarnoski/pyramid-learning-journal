@@ -3,6 +3,7 @@ JOURNAL_ENTRIES = [
         'id': 1,
         'title': 'Pyramid and CookieCutter',
         'date': '30 October, 2017',
+        'tags': "pyramid",
         'body': "So today we learned about pyramid, which was chaos at first,\
           but after I finally understood how it all worked together \
           it got better.I wouldn't say easier, because I still feel like \
@@ -19,6 +20,7 @@ JOURNAL_ENTRIES = [
       'id': 2,
       'title': 'Break all the Things',
       'date': '31 October, 2017',
+      'tags': "data structures, heroku",
       'body': "Today, for our data structure we learned about binary heaps.\
       They're ridiculously easy to explain or draw, but getting it all down\
        in code can make you want to pull your eyebrows off. \
@@ -38,6 +40,7 @@ JOURNAL_ENTRIES = [
       'id': 3,
       'title': 'Lucky Number 13',
       'date': '01 November, 2017',
+      'tags': "database, data structures",
       'body': "Today, day 13, I learned about using SQLAlchemy to store \
       our journal entries in a database. It took a lot of work to get all \
       the pieces working together, but once they finally were it was easier \
@@ -56,10 +59,11 @@ JOURNAL_ENTRIES = [
       }
 ]
 
-JOURNAL_ENTRIES = [
-  {
-    "id": 1,
-    "title": "First Day of School"
-    "date": "16 October",
-  }
-]
+# JOURNAL_ENTRIES = [
+#   {
+#     "id": 1,
+#     "title": "First Day of School"
+#     "date": "16 October",
+#     "body":
+#   }
+# ]
