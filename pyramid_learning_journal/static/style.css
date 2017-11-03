@@ -7,7 +7,7 @@ main {
   width: 80%;
   margin: auto;
   font-family: 'Gudea', sans-serif;
-  height: 100vh;
+  height: 100%;
   color: white;
 }
 
@@ -149,6 +149,7 @@ p {
   padding: 15px 45px;
   border-radius: 5px;
   text-align: center;
+  margin: 15px 0px;
 }
 
 .delete_message {

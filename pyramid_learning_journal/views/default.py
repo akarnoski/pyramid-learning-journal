@@ -100,7 +100,7 @@ def verify_delete(request):
             "title": entry.title,
             "date": entry.date,
             "tags": entry.tags,
-            "body": entry.body
+            "body": entry.body,
             }
     if request.method == "POST":
         password = request.POST['password']

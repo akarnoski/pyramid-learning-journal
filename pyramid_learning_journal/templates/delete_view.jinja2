@@ -6,16 +6,19 @@
     <h3 class="post-title">{{title}}</h3>
     <span class="post-date">{{date}}</span>
     <span>Tags:</span>
-    {% set tags = post.tags.split(', ') %}
+    {% set tags = tags.split(', ') %}
     {% for tag in tags %}
     <a href="{{ request.route_url('tag_view', tag=tag) }}" class="tag_link">#{{tag}}</a>
     {% endfor %}
     <p>{{body}}</p>
+    {% if attempt == 'second' %}
+    <p>Number TWO</p>
+    {% endif %}
     <div class="delete_form">
     <form method="POST">
         <h4 class="delete_message">Password required to delete this entry</h4>
         <input type="password" name="password"/>
-        <input type="submit" value="delete" class="button delete" />
+        <input type="submit" value="delete" class="button" />
         <a class="button" href="{{ request.route_url('detail_page', id=id) }}">Cancel</a>
     </form>
 </div>
