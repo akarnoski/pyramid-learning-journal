@@ -49,15 +49,22 @@ def create_view(request):
     """Renders new article page and returns user input."""
     if request.method == "GET":
         return {}
-    if request.method == "POST":
-        new_entry = Entry(
-            title=request.POST["title"],
-            date=request.POST["date"],
-            tags=request.POST["tags"],
-            body=request.POST["body"],
-        )
-        request.dbsession.add(new_entry)
-    return HTTPFound(request.route_url('home'))
+    if request.method == "POST" and request.POST:
+        form_names = ["title", "date", "tags", "body"]
+        if sum([key in request.POST for key in form_names]) == len(form_names):
+            if ' ' not in list(request.POST.values()):
+                form_data = request.POST
+                new_entry = Entry(
+                    title=form_data["title"],
+                    date=form_data["date"],
+                    tags=form_data["tags"],
+                    body=form_data["body"],
+                )
+                request.dbsession.add(new_entry)
+                return HTTPFound(request.route_url('home'))
+            print(request.POST)
+        data = request.POST
+        return data
 
 
 @view_config(
@@ -67,6 +74,8 @@ def update_view(request):
     """Renders edit page and updates post using user input."""
     entry_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Entry).get(entry_id)
+    if not entry:
+        raise HTTPNotFound
     if request.method == "GET":
         if entry:
             return {
@@ -79,11 +88,11 @@ def update_view(request):
     if request.method == "POST":
         entry.title = request.POST['title']
         entry.date = request.POST['date']
-        # entry.tags = request.POST['tags']
+        entry.tags = request.POST['tags']
         entry.body = request.POST['body']
         request.dbsession.add(entry)
         request.dbsession.flush()
-        return HTTPFound(request.route_url('update_article_page', id=entry.id))
+        return HTTPFound(request.route_url('detail_page', id=entry_id))
 
 
 @view_config(
@@ -94,6 +103,8 @@ def verify_delete(request):
     and requests password."""
     entry_id = int(request.matchdict['id'])
     entry = request.dbsession.query(Entry).get(entry_id)
+    if not entry:
+        raise HTTPNotFound
     if request.method == "GET":
         return {
             "id": entry.id,
