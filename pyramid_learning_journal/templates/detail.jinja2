@@ -1,11 +1,18 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-<article>
-<h3 class="post-title">{{title}}</h3>
-<span class="post-date">{{date}}</span>
-<p>{{body}}</p>
-<a class="button right" href="{{ request.route_url('update_article_page', id=id) }}">Edit</a>
-</article>
 
+<article>
+    <h3 class="post-title">{{title}}</h3>
+    <span class="post-date">{{date}}</span>
+    <span>Tags:</span>
+    {% set tags = tags.split(', ') %}
+    {% for tag in tags %}
+    <a href="{{ request.route_url('tag_view', tag=tag) }}" class="tag_link">#{{tag}}</a>
+    {% endfor %}
+    <p>{{body}}</p>
+    <a class="button left" href="{{ request.route_url('verify_delete', id=id) }}">Delete</a>
+    <a class="button right" href="{{ request.route_url('update_article_page', id=id) }}">Edit</a>
+</article>
+    
 {% endblock %}

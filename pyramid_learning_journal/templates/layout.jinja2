@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <title>Pyramid Learning Journal</title>
     <link href="https://meyerweb.com/eric/tools/css/reset/reset.css" rel="stylesheet">
-    <link href="../static/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Old+Standard+TT" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ request.static_path('pyramid_learning_journal:static/style.css') }}" />
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet">
   </head>
 
   <body>
     <header>
       <nav>
-      <a class="left" href="{{request.route_url('home')}}">Home</a>
+      <a class="home" href="{{request.route_url('home')}}">Home</a>
       <a class="right" href="{{request.route_url('create_article_page')}}">New Entry</a>
       </nav>
       <h1 class="blog-title">Python Learning Journal</h1>

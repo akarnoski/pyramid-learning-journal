@@ -2,13 +2,22 @@
 
 {% block content %}
 <article>
-    <form>
-            <input type="text" name="title" onfocus="this.value=''" value="{{post.title}}"><br>
-            <textarea name="message" value="{{post.body}}" rows="15" cols="100">
-            </textarea>
-          </form>
-
+<h3 class="entry-title">Edit Entry</h3>
+<form method="POST">
+    <label for="title">Title</label>
+    <input type="text" name="title" value="{{title}}"/>
+    <div class="container">
+        <div class="small_container">
+        <label for="date">Date</label>
+        <input type="text" name="date" value="{{date}}"/>
+    </div>
+    <div class="small_container rightcon">
+        <label for="date">Tags <span class="example">(e.g., syntax, testing, ...)</span></label>
+        <input type="text" name="tags" value="{{tags}}"/>
+    </div>
+    </div>
+    <textarea name="body" rows="15" cols="100">{{body}}</textarea>
+    <input type="submit" value="Save" class="button right"/>
+</form>
 </article>
-
 {% endblock %}
-

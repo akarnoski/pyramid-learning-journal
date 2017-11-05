@@ -10,7 +10,7 @@
     <span>Tags:</span>
     {% set tags = post.tags.split(', ') %}
     {% for tag in tags %}
-    <a href="{{ request.route_url('tag_view', tag=tag) }}" class="tag_link">#{{tag}}</a>
+    <a href="{{tag}}" class="tag_link">#{{tag}}</a>
     {% endfor %}
     <a class="button right" href="{{ request.route_url('detail_page', id=post.id) }}">Read</a>
     </article>

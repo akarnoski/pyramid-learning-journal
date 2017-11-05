@@ -48,8 +48,8 @@ def main(argv=sys.argv):
             new_entry = Entry(
                 title=item["title"],
                 date=item["date"],
+                tags=item["tags"],
                 body=item["body"],
-                id=item["id"],
             )
             many_models.append(new_entry)
         dbsession.add_all(many_models)
