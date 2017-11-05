@@ -193,3 +193,16 @@ p {
   font-style: italic;
   color: #a6a6a6;
 }
+
+.content {
+  text-align: center;
+  background: #0d0d0d;
+}
+
+.not_found {
+  font-size: 4em;
+}
+
+.error {
+  color: #fc4445
+}
