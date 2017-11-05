@@ -79,20 +79,12 @@ def test_list_view_returns_empty_when_database_empty(dummy_request):
     assert len(response['entries']) == 0
 
 
-# def test_list_view_returns_count_matching_database(dummy_request, add_models):
-#     """Home view response matches database count."""
-#     from pyramid_learning_journal.views.default import list_view
-#     response = list_view(dummy_request)
-#     query = dummy_request.dbsession.query(Entry)
-#     assert len(response['entries']) == query.count()
-
-
-# def test_list_view_returns_count_matching(dummy_request, add_models):
-#     """Home view response matches database count."""
-#     from pyramid_learning_journal.views.default import list_view
-#     query = dummy_request.dbsession.query(Entry)
-#     response = list_view(dummy_request)
-#     assert len(response['entries']) > 5
+def test_list_view_returns_count_matching_database(dummy_request, add_models):
+    """Home view response matches database count."""
+    from pyramid_learning_journal.views.default import list_view
+    response = list_view(dummy_request)
+    query = dummy_request.dbsession.query(Entry)
+    assert len(response['entries']) == query.count()
 
 
 def test_list_view_returns_dict(dummy_request):
@@ -111,7 +103,7 @@ def testapp(request):
     def main():
         settings = {
             'sqlalchemy.url': 'postgres://localhost:5432/test_learning_journal'
-        }  # points to a database
+        }
         config = Configurator(settings=settings)
         config.include('pyramid_jinja2')
         config.include('.models')
@@ -151,81 +143,72 @@ FAKE_ENTRIES = [Entry(
 ) for i in range(20)]
 
 
-# def test_detail_view_returns_dict(testapp):
-#     """Test that detail view returns a dictionary of values."""
-#     from pyramid_learning_journal.views.default import detail_view
-#     response = detail_view(dummy_request)
-#     query = dummy_request.dbsession.query(Entry).get(1)
-#     assert isinstance(response, dict)
+def test_layout_root(testapp, fill_the_db):
+    """Test that the contents of the root page contains blog title."""
+    response = testapp.get('/', status=200)
+    html = response.html
+    assert 'Python Learning Journal' in html.find("h1").text
 
 
-# def test_detail_view_raises_error(dummy_request):
-#     """Test that detail view raises error when id is not found."""
-#     from pyramid_learning_journal.views.default import detail_view
-#     dummy_request.matchdict['id'] = 100
-#     with pytest.raises(HTTPNotFound):
-#         response = detail_view(dummy_request)
+def test_layout_has_correct_article_count(testapp):
+    """Test that the contents same number of articles as fake entries."""
+    response = testapp.get('/', status=200)
+    html = response.html
+    assert len(FAKE_ENTRIES) == len(html.findAll("article"))
 
 
-# def test_detail_view_dict_is_not_empty(dummy_request):
-#     """Detail view returns dictionary that is not empty."""
-#     from pyramid_learning_journal.views.default import detail_view
-#     dummy_request.matchdict['id'] = 1
-#     response = detail_view(dummy_request)
-#     assert any(response) is True
+def test_detail_page(testapp):
+    """Test the detail page opens without error."""
+    response = testapp.get('/journal/5', status=200)
+    html = response.html
+    assert 'Python Learning Journal' in html.find("h1").text
 
 
-# def test_detail_view_returns_all_dict_attr(dummy_request):
-#     """Detail view returns all keys in the object."""
-#     from pyramid_learning_journal.views.default import detail_view
-#     dummy_request.matchdict['id'] = 1
-#     response = detail_view(dummy_request)
-#     for key in ["id", "title", "date", "body"]:
-#         assert key in response['post'].keys()
+def test_detail_page_error_opens_404_message(testapp):
+    """Test the detail page opens without error."""
+    response = testapp.get('/journal/50', status=404)
+    html = response.html
+    assert '404 Page Not Found' in html.find("p").text
 
 
-# def test_create_view_returns_dict(dummy_request):
-#     """Create view returns a dictionary."""
-#     from pyramid_learning_journal.views.default import create_view
-#     response = create_view(dummy_request)
-#     assert isinstance(response, dict)
+def test_detail_page_renders_post_body(testapp):
+    """Test the article body replaced the template expression."""
+    response = testapp.get('/journal/7', status=200)
+    html = response.html
+    assert html.find("p").text != '{{body}}'
 
 
-# def test_create_view_returns_empty_dict(dummy_request):
-#     """Create view dictionary is empty."""
-#     from pyramid_learning_journal.views.default import create_view
-#     response = create_view(dummy_request)
-#     assert any(response) is False
+def test_create_page(testapp):
+    """Test create page renders without error."""
+    response = testapp.get('/journal/new-entry', status=200)
+    html = response.html
+    assert 'Create New Entry' in html.find("h3").text
 
 
-# def test_update_view_returns_dict(dummy_request):
-#     """Test that detail view returns a dictionary of values."""
-#     from pyramid_learning_journal.views.default import update_view
-#     dummy_request.matchdict['id'] = 1
-#     response = update_view(dummy_request)
-#     assert isinstance(response, dict)
+def test_edit_page(testapp):
+    """Test create page renders without error."""
+    response = testapp.get('/journal/13/edit-entry', status=200)
+    html = response.html
+    assert html.find("form")
 
 
-# def test_update_view_dict_is_not_empty(dummy_request):
-#     """Update view returns dictionary that is not empty."""
-#     from pyramid_learning_journal.views.default import update_view
-#     dummy_request.matchdict['id'] = 1
-#     response = update_view(dummy_request)
-#     assert any(response) is True
+def test_edit_page(testapp):
+    """Test create page renders without error."""
+    response = testapp.get('/journal/13/edit-entry', status=200)
+    html = response.html
+    assert html.find("form")
 
 
-# def test_update_view_returns_all_dict_attr(dummy_request):
-#     """Update view returns all keys in the object."""
-#     from pyramid_learning_journal.views.default import update_view
-#     dummy_request.matchdict['id'] = 1
-#     response = update_view(dummy_request)
-#     for key in ["id", "title", "date", "body"]:
-#         assert key in response['post'].keys()
+def test_delete_verification_page(testapp):
+    """Test delete verifiation page renders without error."""
+    response = testapp.get('/journal/6/verification', status=200)
+    html = response.html
+    assert html.find("form")
 
 
-# def test_update_view_raises_error(dummy_request):
-#     """Test that update view raises error when id is not found."""
-#     from pyramid_learning_journal.views.default import update_view
-#     dummy_request.matchdict['id'] = 100
-#     with pytest.raises(HTTPNotFound):
-#         response = update_view(dummy_request)
+def test_detail_view_raises_error(dummy_request):
+    """Test that detail view raises error when id is not found."""
+    from pyramid_learning_journal.views.default import detail_view
+    dummy_request.matchdict['id'] = 100
+    with pytest.raises(HTTPNotFound):
+        response = detail_view(dummy_request)
