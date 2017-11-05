@@ -1,9 +1,5 @@
-html {
-  background: #0d0d0d;
-}
-
 main {
-  background: #0d0d0d;
+  background:  #f5f0ef;
   width: 80%;
   margin: auto;
   font-family: 'Old Standard TT', serif;
@@ -11,7 +7,7 @@ main {
 }
 
 header {
-  background: #0d0d0d;
+  background: #141414;
   height: 220px;
   color: white;
   width: 80%;
@@ -43,7 +39,7 @@ h1 {
 
 header h2 {
   font-size: 1.5em;
-  color: #984b43;
+  color: #b08b82;
 }
 
 header > h1, h2 {
@@ -56,7 +52,7 @@ article {
   margin: auto;
   margin-bottom: 20px;
   padding: 15px;
-  border-bottom: solid 2px 28393e;
+  border-bottom: solid 2px #141414;
   content: " ";
   display: table;
   clear: both;
@@ -74,22 +70,6 @@ input[type=text], select, textarea{
   font-family: 'Old Standard TT', serif;
 }
 
-input[type=password] {
-  width: 60%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  resize: vertical;
-  font-size: 16px;
-  font-family: 'Old Standard TT', serif;
-}
-
-.delete_form {
-  background: red;
-}
-
 p {
   line-height: 18px;
   font-size: 16px;
@@ -103,18 +83,18 @@ p {
 }
 
 .left:hover {
-  color: #b08b82;
+  color: #a2c3aa;
 }
 
 .right {
   float: right;
-  background: #28393e;
+  background: #a2c3aa;
   border-radius: 5px;
 }
 
 .button {
-  background: #eac67a;
-  border: 2px solid #eac67a;
+  background: #a2c3aa;
+  border: 2px solid #a2c3aa;
   border-radius: 5px;
   padding: 5px 10px;
   display: inline-block;
@@ -127,19 +107,14 @@ p {
   font-family: 'Old Standard TT', serif;
 }
 
-.delete {
-  background: #984b43;
-  padding: 4px 10px;
-}
-
 .button:hover, .right:hover {
-  background: #b08b82;
+  background: #83af8f;
 }
 
 .post-title {
   font-size: 1.8em;
   font-family: 'Oswald', sans-serif;
-  background: #28393e;
+  background: #90221d;
   color: white;
   padding: 8px;
 }

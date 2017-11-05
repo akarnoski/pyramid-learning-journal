@@ -1,0 +1,14 @@
+[run]
+source = pyramid_learning_journal
+omit =
+    pyramid_learning_journal/test*
+    pyramid_learning_journal/scripts/*
+    pyramid_learning_journal/data/*
+    pyramid_learning_journal/views/__init__.py
+    pyramid_learning_journal/routes.py
+    pyramid_learning_journal/__init__.py
+
+[report]
+show_missing = True
+    
+
