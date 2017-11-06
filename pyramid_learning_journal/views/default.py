@@ -2,6 +2,7 @@
 from pyramid.view import view_config
 from pyramid_learning_journal.models.entry import Entry
 from pyramid.httpexceptions import HTTPNotFound, HTTPFound, HTTPBadRequest
+import os
 
 
 @view_config(route_name='home', renderer='../templates/index.jinja2')
@@ -115,7 +116,7 @@ def verify_delete(request):
             }
     if request.method == "POST":
         password = request.POST['password']
-        if password == PASSWORD:
+        if password == os.environ['PASSWORD']:
             return HTTPFound(request.route_url('delete_entry', id=entry_id))
         else:
             return HTTPFound(request.route_url('verify_delete', id=entry_id))
