@@ -115,7 +115,7 @@ def verify_delete(request):
             }
     if request.method == "POST":
         password = request.POST['password']
-        if password == "top_secret_password":
+        if password == PASSWORD:
             return HTTPFound(request.route_url('delete_entry', id=entry_id))
         else:
             return HTTPFound(request.route_url('verify_delete', id=entry_id))
