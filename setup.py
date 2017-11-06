@@ -58,7 +58,7 @@ setup(
             'main = pyramid_learning_journal:main',
         ],
         'console_scripts': [
-            'initdb = pyramid_learning_journal.scripts.initializedb:main',
+            'initializedb = pyramid_learning_journal.scripts.initializedb:main',
         ],
     },
 )
