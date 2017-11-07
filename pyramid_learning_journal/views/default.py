@@ -88,7 +88,6 @@ def update_view(request):
                 "body": entry.body
             }
     if request.method == "POST":
-        entry.id = entry.id,
         entry.title = request.POST['title']
         entry.date = request.POST['date']
         entry.tags = request.POST['tags']
