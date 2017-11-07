@@ -67,7 +67,7 @@ def dummy_request(db_session):
 def add_models(dummy_request):
     """Add a bunch of model instances to the database.
 
-    Every test that includes this fixture will add new random expenses.
+    Every test that includes this fixture will add new random entries.
     """
     dummy_request.dbsession.add_all(FAKE_ENTRIES)
 
@@ -104,28 +104,28 @@ def test_create_view_post_empty_is_empty_dict(dummy_request):
 
 
 def test_create_view_post_incomplete_data_returns_data(dummy_request):
-        """POST data that is incomplete just gets returned to the user."""
-        from pyramid_learning_journal.views.default import create_view
-        dummy_request.method = "POST"
-        data_dict = {"title": 'this is a test'}
-        dummy_request.POST = data_dict
-        response = create_view(dummy_request)
-        assert response == data_dict
+    """POST data that is incomplete just gets returned to the user."""
+    from pyramid_learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    data_dict = {"title": 'this is a test'}
+    dummy_request.POST = data_dict
+    response = create_view(dummy_request)
+    assert response == data_dict
 
 
 def test_create_view_post_good_data_is_302(dummy_request):
-        """POST request with correct data should redirect with status code 302."""
-        from pyramid_learning_journal.views.default import create_view
-        dummy_request.method = "POST"
-        data_dict = {
-                "title": "testing title",
-                "date": "10 Fake, Year",
-                "tags": "yes, no, okay",
-                "body": "I hope this works"
-        }
-        dummy_request.POST = data_dict
-        response = create_view(dummy_request)
-        assert response.status_code == 302
+    """POST request with correct data should redirect with status code 302."""
+    from pyramid_learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    data_dict = {
+            "title": "testing title",
+            "date": "10 Fake, Year",
+            "tags": "yes, no, okay",
+            "body": "I hope this works"
+    }
+    dummy_request.POST = data_dict
+    response = create_view(dummy_request)
+    assert response.status_code == 302
 
 
 @pytest.fixture(scope="session")
@@ -186,7 +186,7 @@ FAKE_ENTRIES = [Entry(
 ) for i in range(20)]
 
 
-def test_new_expense_redirects_to_home(testapp, empty_db):
+def test_new_entry_redirects_to_home(testapp, empty_db):
     """When redirection is followed, result is home page."""
     data_dict = {
         "title": "testing title",

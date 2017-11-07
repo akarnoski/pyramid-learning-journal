@@ -9,6 +9,7 @@ import os
 def list_view(request):
     """Return all entries in the database."""
     entries = request.dbsession.query(Entry).all()
+    entries = sorted([entry.to_dict() for entry in entries], key=lambda x: x['id'])
     return {
         "entries": entries
         }
@@ -63,7 +64,6 @@ def create_view(request):
                 )
                 request.dbsession.add(new_entry)
                 return HTTPFound(request.route_url('home'))
-            print(request.POST)
         data = request.POST
         return data
     return {}
@@ -88,6 +88,7 @@ def update_view(request):
                 "body": entry.body
             }
     if request.method == "POST":
+        entry.id = entry.id,
         entry.title = request.POST['title']
         entry.date = request.POST['date']
         entry.tags = request.POST['tags']
