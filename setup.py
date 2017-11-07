@@ -28,7 +28,8 @@ tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',
     'pytest-cov',
-    'tox'
+    'tox',
+    'faker'
 ]
 
 setup(
@@ -58,7 +59,7 @@ setup(
             'main = pyramid_learning_journal:main',
         ],
         'console_scripts': [
-            'initdb = pyramid_learning_journal.scripts.initializedb:main',
+            'initializedb = pyramid_learning_journal.scripts.initializedb:main',
         ],
     },
 )

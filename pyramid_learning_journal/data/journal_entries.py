@@ -96,5 +96,12 @@ JOURNAL_ENTRIES = [
     "date": "02 November, 2017",
     "tags": "database, pyramid, SQLAlchemy",
     "body": "Today we learned more about working with the database, and how to edit or add new data from user input. It started with just changing stuff up in the code, and ended with deciphering an obnoxious amount of error messages. After the storm settled it was really cool to be able to add new articles or delete them and actually have persistent data. Although I've made a lot of progress on the learning journal, I don't think I've written a doc string in like two days. You'd think with everything that pyramid can do it would take care of that for you. Maybe I'll make a package."
+  },
+  {
+    "id": 15,
+    "title": "TGIF",
+    "date": "03 November, 2017",
+    "tags": "SQLAlchemy, time management",
+    "body": "Today was mostly a 'try to get your life in order' day and it gave us a chance to get all of our assignments/project planning under control. Working with pyramid and SQLAlchemy is a lot of fun, and it's impressive what all can be done with it. I'd rather work with a database than CSS ever again."
   }
 ]
