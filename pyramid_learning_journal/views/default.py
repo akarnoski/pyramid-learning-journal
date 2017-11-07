@@ -66,6 +66,7 @@ def create_view(request):
             print(request.POST)
         data = request.POST
         return data
+    return {}
 
 
 @view_config(

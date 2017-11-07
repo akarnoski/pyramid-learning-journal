@@ -103,5 +103,12 @@ JOURNAL_ENTRIES = [
     "date": "03 November, 2017",
     "tags": "SQLAlchemy, time management",
     "body": "Today was mostly a 'try to get your life in order' day and it gave us a chance to get all of our assignments/project planning under control. Working with pyramid and SQLAlchemy is a lot of fun, and it's impressive what all can be done with it. I'd rather work with a database than CSS ever again."
+  },
+  {
+    "id": 16,
+    "title": "Hello MTV, Welcome to My Learning Journal",
+    "date": "06 NOVEMBER, 2017",
+    "tags": "WIN, heroku",
+    "body": "Oh boy, look at this! My very own learning journal. It's like getting your first car, but instead of getting it for your 16th birthday you had to build it from the ground up, by yourself, under pressure, and not be terrified of the fact that about three hours ago everything was broken. Today was mostly spent getting everything working. It seemed like one thing would be fine, and then something else would go wrong. Like wack-a-mole, but with error messages. If there was one major thing I learned today, it was definitely attention to detail. It's easy to glance over something, especially code that you've been working on for a while, and think that everything looks okay. But if you're not paying attention enough you can miss something really simple, and waste time looking in the wrong direction. However, even though getting stuck on something that turns out to be SO OBVIOUS is the literal worst, it was fun to go back through the call stack for different errors and really pick the code apart. Not that I want to do it again, though."
   }
 ]
