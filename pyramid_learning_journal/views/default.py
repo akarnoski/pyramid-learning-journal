@@ -2,6 +2,9 @@
 from pyramid.view import view_config
 from pyramid_learning_journal.models.entry import Entry
 from pyramid.httpexceptions import HTTPNotFound, HTTPFound, HTTPBadRequest
+from pyramid.security import remember, forget
+from pyramid.security import NO_PERMISSION_REQUIRED
+from pyramid_learning_journal.security import check_credentials
 import os
 
 
@@ -9,7 +12,9 @@ import os
 def list_view(request):
     """Return all entries in the database."""
     entries = request.dbsession.query(Entry).all()
-    entries = sorted([entry.to_dict() for entry in entries], key=lambda x: x['id'])
+    entries = sorted(
+        [entry.to_dict() for entry in entries],
+        key=lambda x: x['id'])
     return {
         "entries": entries
         }
@@ -46,7 +51,8 @@ def detail_view(request):
 
 @view_config(
     route_name='create_article_page',
-    renderer='../templates/form_page.jinja2')
+    renderer='../templates/form_page.jinja2',
+    permission='secret')
 def create_view(request):
     """Renders new article page and returns user input."""
     if request.method == "GET":
@@ -71,7 +77,8 @@ def create_view(request):
 
 @view_config(
     route_name='update_article_page',
-    renderer='../templates/edit_page.jinja2')
+    renderer='../templates/edit_page.jinja2',
+    permission='secret')
 def update_view(request):
     """Renders edit page and updates post using user input."""
     entry_id = int(request.matchdict['id'])
@@ -99,7 +106,8 @@ def update_view(request):
 
 @view_config(
     route_name='verify_delete',
-    renderer='../templates/delete_view.jinja2')
+    renderer='../templates/delete_view.jinja2',
+    permission='secret')
 def verify_delete(request):
     """Renders delete view using the post id to prepare to delete
     and requests password."""
@@ -130,3 +138,29 @@ def delete_entry(request):
     entry = request.dbsession.query(Entry).get(entry_id)
     request.dbsession.delete(entry)
     return HTTPFound(request.route_url('home'))
+
+
+@view_config(
+    route_name='login',
+    renderer='../templates/login.jinja2')
+def login(request):
+    print('this is the page')
+    if request.method == 'GET':
+        print('this is get')
+        return {}
+    if request.method == 'POST':
+        username = request.params.get('username', '')
+        password = request.params.get('password', '')
+        if check_credentials(username, password):
+            headers = remember(request, username)
+            return HTTPFound(
+                location=request.route_url('home'),
+                headers=headers)
+        return {}
+
+
+@view_config(
+    route_name='logout')
+def logout(request):
+    headers = forget(request)
+    return HTTPFound(request.route_url('home'), headers=headers)
