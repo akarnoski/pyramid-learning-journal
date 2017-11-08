@@ -144,9 +144,7 @@ def delete_entry(request):
     route_name='login',
     renderer='../templates/login.jinja2')
 def login(request):
-    print('this is the page')
     if request.method == 'GET':
-        print('this is get')
         return {}
     if request.method == 'POST':
         username = request.params.get('username', '')
