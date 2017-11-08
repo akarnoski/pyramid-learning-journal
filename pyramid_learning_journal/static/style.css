@@ -75,15 +75,6 @@ input[type=text], select, textarea{
   font-family: 'Gudea', sans-serif;
 }
 
-.rightcon {
-  float: right;
-}
-
-.small_container {
-  width: 49%;
-  display: inline-block;
-}
-
 input[type=password] {
   width: 60%;
   padding: 10px;
@@ -99,6 +90,31 @@ input[type=password] {
 label {
   margin-top: 20px;
 }
+
+.rightcon {
+  float: right;
+}
+
+.small_container {
+  width: 49%;
+  display: inline-block;
+}
+
+.password_container {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.password_container input[type=text] {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.password_container input[type=password] {
+  width: 100%;
+  margin: auto;
+}
+
 
 p {
   line-height: 24px;
@@ -199,7 +215,7 @@ p {
   background: #0d0d0d;
 }
 
-.not_found {
+.error_message {
   font-size: 4em;
 }
 

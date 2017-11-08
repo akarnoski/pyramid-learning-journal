@@ -13,7 +13,16 @@
     <header>
       <nav>
       <a class="home" href="{{request.route_url('home')}}">Home</a>
-      <a class="right" href="{{request.route_url('create_article_page')}}">New Entry</a>
+      {% if request.authenticated_userid %}
+
+      <a class="right button" href="{{request.route_url('logout')}}">Log Out</a>
+      <a class="right button" href="{{request.route_url('create_article_page')}}">New</a>
+
+       {% else %}
+
+       <a class="right" href="{{request.route_url('login')}}">Log In</a>
+
+       {% endif %}
       </nav>
       <h1 class="blog-title">Python Learning Journal</h1>
       <h2>get learned bout sneks</h2>

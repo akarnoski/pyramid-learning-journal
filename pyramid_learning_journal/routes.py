@@ -11,3 +11,5 @@ def includeme(config):
     config.add_route('verify_delete', '/journal/{id:\d+}/verification')
     config.add_route('delete_entry', '/journal/{id:\d+}/delete')
     config.add_route('tag_view', '/journal/{tag}')
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')
