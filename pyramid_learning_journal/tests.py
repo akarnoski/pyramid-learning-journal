@@ -67,7 +67,7 @@ def dummy_request(db_session):
 def add_models(dummy_request):
     """Add a bunch of model instances to the database.
 
-    Every test that includes this fixture will add new random expenses.
+    Every test that includes this fixture will add new random entries.
     """
     dummy_request.dbsession.add_all(FAKE_ENTRIES)
 
@@ -93,6 +93,39 @@ def test_list_view_returns_dict(dummy_request):
     response = list_view(dummy_request)
     query = dummy_request.dbsession.query(Entry).all()
     assert isinstance(response, dict)
+
+
+def test_create_view_post_empty_is_empty_dict(dummy_request):
+    """POST requests without data should return an empty dictionary."""
+    from pyramid_learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    response = create_view(dummy_request)
+    assert response == {}
+
+
+def test_create_view_post_incomplete_data_returns_data(dummy_request):
+    """POST data that is incomplete just gets returned to the user."""
+    from pyramid_learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    data_dict = {"title": 'this is a test'}
+    dummy_request.POST = data_dict
+    response = create_view(dummy_request)
+    assert response == data_dict
+
+
+def test_create_view_post_good_data_is_302(dummy_request):
+    """POST request with correct data should redirect with status code 302."""
+    from pyramid_learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    data_dict = {
+            "title": "testing title",
+            "date": "10 Fake, Year",
+            "tags": "yes, no, okay",
+            "body": "I hope this works"
+    }
+    dummy_request.POST = data_dict
+    response = create_view(dummy_request)
+    assert response.status_code == 302
 
 
 @pytest.fixture(scope="session")
@@ -135,22 +168,46 @@ def fill_the_db(testapp):
     return dbsession
 
 
+@pytest.fixture
+def empty_db(testapp):
+    """Tear down the database and add a fresh table."""
+    SessionFactory = testapp.app.registry["dbsession_factory"]
+    engine = SessionFactory().bind
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+
+
 fake = Faker()
 FAKE_ENTRIES = [Entry(
     title=fake.job(),
     date=fake.century(),
+    tags=fake.job(),
     body=fake.text()
 ) for i in range(20)]
 
 
-def test_layout_root(testapp, fill_the_db):
+def test_new_entry_redirects_to_home(testapp, empty_db):
+    """When redirection is followed, result is home page."""
+    data_dict = {
+        "title": "testing title",
+        "date": "10 Fake, Year",
+        "tags": "yes, no, okay",
+        "body": "I hope this works"
+    }
+    response = testapp.post('/journal/new-entry', data_dict)
+    next_response = response.follow()
+    home_response = testapp.get('/')
+    assert next_response.text == home_response.text
+
+
+def test_layout_root(testapp, empty_db):
     """Test that the contents of the root page contains blog title."""
     response = testapp.get('/', status=200)
     html = response.html
     assert 'Python Learning Journal' in html.find("h1").text
 
 
-def test_layout_has_correct_article_count(testapp):
+def test_layout_has_correct_article_count(testapp, fill_the_db):
     """Test that the contents same number of articles as fake entries."""
     response = testapp.get('/', status=200)
     html = response.html
@@ -164,14 +221,14 @@ def test_detail_page(testapp):
     assert 'Python Learning Journal' in html.find("h1").text
 
 
-def test_detail_page_error_opens_404_message(testapp):
+def test_detail_page_error_opens_404_message(testapp, fill_the_db):
     """Test the detail page opens without error."""
     response = testapp.get('/journal/50', status=404)
     html = response.html
-    assert '404 Page Not Found' in html.find("p").text
+    assert '404' in html.find("span").text
 
 
-def test_detail_page_renders_post_body(testapp):
+def test_detail_page_renders_post_body(testapp, fill_the_db):
     """Test the article body replaced the template expression."""
     response = testapp.get('/journal/7', status=200)
     html = response.html
@@ -185,21 +242,21 @@ def test_create_page(testapp):
     assert 'Create New Entry' in html.find("h3").text
 
 
-def test_edit_page(testapp):
+def test_edit_page(testapp, fill_the_db):
     """Test create page renders without error."""
     response = testapp.get('/journal/13/edit-entry', status=200)
     html = response.html
     assert html.find("form")
 
 
-def test_edit_page(testapp):
+def test_edit_page(testapp, fill_the_db):
     """Test create page renders without error."""
     response = testapp.get('/journal/13/edit-entry', status=200)
     html = response.html
     assert html.find("form")
 
 
-def test_delete_verification_page(testapp):
+def test_delete_verification_page(testapp, fill_the_db):
     """Test delete verifiation page renders without error."""
     response = testapp.get('/journal/6/verification', status=200)
     html = response.html

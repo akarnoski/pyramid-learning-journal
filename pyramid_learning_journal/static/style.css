@@ -3,7 +3,7 @@ html {
 }
 
 main {
-  background: #1a1a1a;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
   width: 80%;
   margin: auto;
   font-family: 'Gudea', sans-serif;
