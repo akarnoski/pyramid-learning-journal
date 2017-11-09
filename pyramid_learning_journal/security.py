@@ -21,7 +21,7 @@ class MyRoot(object):
 
 def includeme(config):
     """security-related configuration"""
-    auth_secret = os.environ.get('AUTH_SECRET', '')
+    auth_secret = os.environ['AUTH_SECRET']
     authn_policy = AuthTktAuthenticationPolicy(
         secret=auth_secret,
         hashalg='sha512'
@@ -31,15 +31,15 @@ def includeme(config):
     config.set_authorization_policy(authz_policy)
     config.set_default_permission('view')
     config.set_root_factory(MyRoot)
-    session_secret = os.environ.get('SESSION_SECRET', '')
+    session_secret = os.environ['SESSION_SECRET']
     session_factory = SignedCookieSessionFactory(session_secret)
     config.set_session_factory(session_factory)
     config.set_default_csrf_options(require_csrf=True)
 
 
 def check_credentials(username, password):
-    stored_username = os.environ.get('AUTH_USERNAME', '')
-    stored_password = os.environ.get('AUTH_PASSWORD', '')
+    stored_username = os.environ['AUTH_USERNAME']
+    stored_password = os.environ['AUTH_PASSWORD']
     is_authenticated = False
     if stored_username and stored_password:
         if username == stored_username:
