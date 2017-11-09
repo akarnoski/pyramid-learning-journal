@@ -128,23 +128,6 @@ def test_create_view_post_good_data_is_302(dummy_request):
     assert response.status_code == 302
 
 
-def test_update_view_post_good_data_is_302(dummy_request):
-    """POST request with correct data should redirect with status code 302."""
-    from pyramid_learning_journal.views.default import update_view
-    dummy_request.method = "POST"
-    dummy_request.matchdict['id'] = 1
-    data_dict = {
-            "title": "New Title",
-            "date": "10 Fake, Year",
-            "tags": "yes, no, okay",
-            "body": "I hope this works"
-    }
-    dummy_request.POST = data_dict
-    update_view(dummy_request)
-    entry = dummy_request.dbsession.query(Entry).get(1)
-    assert entry.title == 'New Title'
-
-
 @pytest.fixture(scope="session")
 def testapp(request):
     from webtest import TestApp
@@ -250,13 +233,6 @@ def test_detail_page_renders_post_body(testapp, fill_the_db):
     response = testapp.get('/journal/7', status=200)
     html = response.html
     assert html.find("p").text != '{{body}}'
-
-
-def test_create_page(testapp):
-    """Test create page renders without error."""
-    response = testapp.get('/journal/new-entry', status=200)
-    html = response.html
-    assert 'Create New Entry' in html.find("h3").text
 
 
 def test_edit_page(testapp, fill_the_db):

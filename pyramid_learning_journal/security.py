@@ -48,5 +48,5 @@ def check_credentials(username, password):
                     password,
                     stored_password)
             except ValueError:
-                raise ValueError
+                pass
     return is_authenticated
