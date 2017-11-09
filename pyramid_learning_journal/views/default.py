@@ -150,8 +150,8 @@ def login(request):
     if request.method == 'GET':
         return {}
     if request.method == 'POST':
-        username = request.params.get('username', '')
-        password = request.params.get('password', '')
+        username = request.POST['username']
+        password = request.POST['password']
         if check_credentials(username, password):
             headers = remember(request, username)
             return HTTPFound(
