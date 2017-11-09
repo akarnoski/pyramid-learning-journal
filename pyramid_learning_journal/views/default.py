@@ -154,6 +154,7 @@ def login(request):
             return HTTPFound(
                 location=request.route_url('home'),
                 headers=headers)
+        request.session.flash('* INCORRECT USERNAME/PASSWORD COMBINATION')
         return {}
 
 
