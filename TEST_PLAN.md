@@ -5,6 +5,16 @@
 Document and track the necessary tests required to thoroughly
 verify the application works properly
 
+**Unit Testing:**
+
+- Testing the outermost layer of the code
+- Should not reach the depth of systems interaction
+- Mock the HTTP library and replace all the HTTP calls with mock calls
+
+**Functional Testing:** 
+
+- Enter realistic input and get realistic output
+- Essential to verify that complex systems are interworking well
 
 **Scope**
 

@@ -1,11 +1,14 @@
 {% extends "layout.jinja2" %}
 
 {% block content %}
-
 <article>
 <h3 class="entry-title">User Login</h3>
 <form method="POST">
+    <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" />
     <div class="password_container">
+        {% for msg in request.session.pop_flash() %}
+            <p class="message">{{ msg }}</p>
+        {% endfor %}
         <input type="text" placeholder="Username" name="username" required/>
         <input type="password" placeholder="Password" name="password" required/>
     </div>

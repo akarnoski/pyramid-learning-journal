@@ -1,7 +1,10 @@
 """Render different views based on page selection."""
 from pyramid.view import view_config
 from pyramid_learning_journal.models.entry import Entry
-from pyramid.httpexceptions import HTTPNotFound, HTTPFound, HTTPBadRequest
+from pyramid.httpexceptions import (
+    HTTPNotFound,
+    HTTPFound,
+    HTTPForbidden)
 from pyramid.security import remember, forget
 from pyramid.security import NO_PERMISSION_REQUIRED
 from pyramid_learning_journal.security import check_credentials
@@ -147,13 +150,14 @@ def login(request):
     if request.method == 'GET':
         return {}
     if request.method == 'POST':
-        username = request.params.get('username', '')
-        password = request.params.get('password', '')
+        username = request.POST['username']
+        password = request.POST['password']
         if check_credentials(username, password):
             headers = remember(request, username)
             return HTTPFound(
                 location=request.route_url('home'),
                 headers=headers)
+        request.session.flash('* INCORRECT USERNAME/PASSWORD COMBINATION')
         return {}
 
 
