@@ -1,0 +1,224 @@
+html {
+  background: #0d0d0d;
+}
+
+main {
+  background: linear-gradient(to bottom, #1a1a1a 0%, #0d0d0d 100%);
+  width: 80%;
+  margin: auto;
+  font-family: 'Gudea', sans-serif;
+  height: 100%;
+  color: white;
+}
+
+header {
+  background: #1a1a1a;
+  height: 250px;
+  color: white;
+  width: 80%;
+  margin: auto;
+}
+
+nav {
+  content: " ";
+  display: table;
+  clear: both;
+  width: 100%;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+  margin: 10px 15px;
+  font-size: 18px;
+  color: white;
+  padding: 10px;
+  font-family: 'Gudea', sans-serif;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-size: 3.3em;
+  margin-top: 5%;
+}
+
+header h2 {
+  font-size: 1.5em;
+  color: #10bcb3;
+}
+
+header > h1, h2 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+article {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: solid 2px #333333;
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  font-size: 16px;
+  font-family: 'Gudea', sans-serif;
+}
+
+input[type=password] {
+  width: 60%;
+  padding: 10px;
+  margin: 10px 0px 10px 45px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  font-size: 16px;
+  font-family: 'Gudea', sans-serif;
+}
+
+label {
+  margin-top: 20px;
+}
+
+.rightcon {
+  float: right;
+}
+
+.small_container {
+  width: 49%;
+  display: inline-block;
+}
+
+.password_container {
+  width: 70%;
+  margin: 10px auto;
+}
+
+.password_container input[type=text] {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.password_container input[type=password] {
+  width: 100%;
+  margin: auto;
+}
+
+
+p {
+  line-height: 24px;
+  font-size: 16px;
+  width: 90%;
+  margin: auto;
+  text-align: justify;
+  font-family: 'Gudea', sans-serif;
+}
+
+.home {
+  float: left;
+}
+
+.home:hover {
+  color: #a64dff;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+  background: #fc4445;
+  border-radius: 5px;
+}
+
+.button {
+  background: #fc4445;
+  border: 2px solid #fc4445;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 70px;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px;
+  color: white;
+  font-size: 14px;
+  padding: 10px;
+  font-family: 'Gudea', sans-serif;
+}
+
+.delete_form {
+  background: #970202;
+  padding: 15px 45px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 15px 0px;
+}
+
+.delete_message {
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.button:hover, .right:hover {
+  background: #e83030;
+}
+
+.post-title {
+  font-size: 1.8em;
+  font-family: 'Oswald', sans-serif;
+  padding: 8px;
+}
+
+.post-date {
+  text-transform: uppercase;
+  margin: 15px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.entry-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.tag_link {
+  text-decoration: none;
+  margin: 0px 3px;
+  font-size: 12px;
+  color: #a64dff;
+  font-style: italic;
+  font-family: 'Gudea', sans-serif; 
+}
+
+.example {
+  font-size: 12px;
+  font-style: italic;
+  color: #a6a6a6;
+}
+
+.content {
+  text-align: center;
+  background: #0d0d0d;
+}
+
+.error_message {
+  font-size: 4em;
+}
+
+.error {
+  color: #fc4445
+}

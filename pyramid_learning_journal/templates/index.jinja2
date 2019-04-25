@@ -1,0 +1,20 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+
+    {% for post in entries|reverse %}
+
+    <article>
+    <h3 class="post-title">{{post.title}}</h3>
+    <span class="post-date">{{post.date}}</span>
+    <span>Tags:</span>
+    {% set tags = post.tags.split(', ') %}
+    {% for tag in tags %}
+    <a href="{{ request.route_url('tag_view', tag=tag) }}" class="tag_link">#{{tag}}</a>
+    {% endfor %}
+    <a class="button right" href="{{ request.route_url('detail_page', id=post.id) }}">Read</a>
+    </article>
+
+    {% endfor %}
+    
+{% endblock %}
